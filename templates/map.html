@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+<html>
+<head>
+    <title>Карта с камерами</title>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=17bf3fad-83a3-41d8-9435-9f48503e0d7d&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 10
+            });
+
+            {% for camera in cameras %}
+            var myPlacemark = new ymaps.Placemark([{{ camera.latitude }}, {{ camera.longitude }}], {
+                balloonContent: '<h3>{{ camera.name }}</h3><iframe width="560" height="315" src="{{ camera.url }}" frameborder="0" allowfullscreen></iframe>'
+            });
+            myMap.geoObjects.add(myPlacemark);
+            {% endfor %}
+        }
+
+        ymaps.ready(init);
+    </script>
+</head>
+<body>
+    <h1>Карта с камерами</h1>
+    <div id="map" style="width: 1850px; height: 800px;"></div>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
